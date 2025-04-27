@@ -1,0 +1,97 @@
+# Git
+.git
+.gitignore
+
+# Development environments
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Docker
+.dockerignore
+Dockerfile*
+docker-compose*
+.docker/
+
+# Data directories (will be mounted as volumes)
+models/
+transcriptions/
+examples/
+*.wav
+*.mp3
+*.ogg
+*.flac
+
+# Virtual environment
+venv/
+ENV/
+
+# Logs
+logs/
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Large media files
+*.mp4
+*.avi
+*.mov
+
+# Configuration
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Project specific
+.gradio/
+credentials/
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Development and IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Project specific
+models/*
+transcriptions/*
+.gradio/
+credentials/
+
+# Docker
+.dockerignore
+Dockerfile 

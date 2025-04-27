@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  transcriber:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - HTTP_PROXY=${HTTP_PROXY}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+        - NO_PROXY=${NO_PROXY}
+    image: indian-language-transcriber
+    container_name: indian-language-transcriber
+    ports:
+      - "7860:7860"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - ./models:/app/models
+      - ./transcriptions:/app/transcriptions
+    command: >
+      bash -c "
+        echo 'Checking for model files...' &&
+        if [ -f /app/models/tiny.pt ]; then
+          echo 'Using tiny model' &&
+          python mapping.py --web --model tiny --local_model_path /app/models/tiny.pt
+        else
+          echo 'No model files found, creating placeholder' &&
+          echo 'PLACEHOLDER_MODEL' > /app/models/tiny.pt &&
+          python mapping.py --web --model tiny --local_model_path /app/models/tiny.pt
+        fi
+      "
+    restart: unless-stopped
+    environment:
+      - MODEL_SIZE=tiny
+      - LOCAL_MODEL_PATH=/app/models/tiny.pt
+      - WEB_INTERFACE=true
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+    # Using bridge mode instead of host for better compatibility
+    # network_mode: "bridge"
+    # Uncomment for GPU support
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu] 
