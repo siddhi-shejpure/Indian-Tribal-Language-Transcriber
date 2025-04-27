@@ -5,9 +5,11 @@ A tool for transcribing audio files in Indian and tribal languages.
 ## Features
 
 - Transcribe audio recordings in Indian languages
-- Support for multiple transcription models
+- Support for multiple transcription models (tiny, base, small, medium, large)
 - Web interface for easy interaction
 - Command line interface for batch processing
+- Support for both native script and Roman transliteration
+- Special handling for Sanskrit mantras and Konkani language
 
 ## Setup and Installation
 
@@ -15,25 +17,16 @@ A tool for transcribing audio files in Indian and tribal languages.
 
 1. **Clone the repository:**
    ```
-   git clone <repository-url>
-   cd Indian-Tribal-Language
+   git clone https://github.com/siddhi-shejpure/Indian-Tribal-Language-Transcriber.git
+   cd Indian-Tribal-Language-Transcriber
    ```
 
-2. **Install system dependencies:**
-   - ffmpeg
-   - libsndfile1
-
-   On Ubuntu/Debian:
-   ```
-   sudo apt-get update && sudo apt-get install -y ffmpeg libsndfile1
-   ```
-
-3. **Install Python dependencies:**
+2. **Install Python dependencies:**
    ```
    pip install -r requirements.txt
    ```
 
-4. **Run the application:**
+3. **Run the application:**
    
    With web interface:
    ```
@@ -67,6 +60,8 @@ Navigate to http://localhost:7860 in your browser to access the web interface. F
 - Upload audio files
 - Select transcription options
 - View and download transcription results
+- Choose between different model sizes
+- Select specific languages or use auto-detection
 
 ### Command Line Interface
 
@@ -84,6 +79,23 @@ Additional options:
 --port 7860                                      # Port for web interface
 ```
 
+## Supported Languages
+
+- Hindi (hi)
+- Marathi (mr)
+- Bengali (bn)
+- Tamil (ta)
+- Telugu (te)
+- Malayalam (ml)
+- Kannada (kn)
+- Gujarati (gu)
+- Punjabi (pa)
+- Odia (or)
+- Assamese (as)
+- Sanskrit (sa)
+- Konkani (kok)
+- Auto-detect (auto)
+
 ## Environment Variables
 
 You can configure the application using environment variables:
@@ -92,6 +104,20 @@ You can configure the application using environment variables:
 - `WEB_INTERFACE`: Set to "True" to start with web interface
 - `HOST`: Host for the web interface
 - `PORT`: Port for the web interface
+
+## Project Structure
+
+```
+Indian-Tribal-Language-Transcriber/
+├── mapping.py              # Main application code
+├── requirements.txt        # Python dependencies
+├── Dockerfile             # Docker configuration
+├── docker-compose.yml     # Docker Compose configuration
+├── README.md              # Project documentation
+├── .gitignore             # Git ignore rules
+├── models/                # Directory for model files
+└── transcriptions/        # Directory for transcription outputs
+```
 
 ## License
 
